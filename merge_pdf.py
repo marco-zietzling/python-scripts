@@ -1,3 +1,8 @@
+# merge several PDF files from a directoy to a new file called 'output.pdf'
+# the first argument defines the directory
+# PDF files are merged according to alphabetical order
+# usage: python merge_pdf.py path/to/directoy/containing/pdf/files
+
 import os
 from PyPDF2 import PdfFileMerger
 import sys
@@ -18,10 +23,10 @@ files = os.listdir(working_directory)
 # iterate over files and append them
 for file in files:
 	print("processing " + file)
-	input = open(working_directory + "\\" + file, "rb")
+	input = open(working_directory + "/" + file, "rb")
 	merger.append(input)
 
 # write output to new file
-output = open(working_directory + "\\output.pdf","wb")
+output = open(working_directory + "/output.pdf","wb")
 merger.write(output)
 output.close()
