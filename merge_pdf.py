@@ -22,12 +22,15 @@ files = os.listdir(working_directory)
 
 # iterate over files and append them (consider only PDF files)
 for file in files:
-	if file.endswith(".pdf"):
+	if file.lower().endswith(".pdf"):
 		print("processing " + file)
-		input = open(working_directory + "/" + file, "rb")
+		filepath = os.path.join(working_directory, file)
+		filepath = os.path.normcase(filepath)
+		input = open(filepath, "rb")
 		merger.append(input)
 
 # write output to new file
-output = open(working_directory + "/output.pdf","wb")
+outputfile = os.path.join(working_directory, "output.pdf")
+output = open(outputfile,"wb")
 merger.write(output)
 output.close()
